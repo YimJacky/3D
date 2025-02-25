@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旅遊網站</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* 自定义颜色 */
+        .bg-custom-blue {
+            background-color: #80ccff;
+        }
+
+        .bg-custom-black {
+            background-color: #000000;
+        }
+
+        .bg-custom-pink {
+            background-color: #ff1aff;
+        }
+
+        .bg-custom-white {
+            background-color: #ffffff;
+        }
+
+        .text-custom-black {
+            color: #000000;
+        }
+
+        .text-custom-pink {
+            color: #ff1aff;
+        }
+
+        .text-custom-white {
+            color: #ffffff;
+        }
+
+        /* 动画效果 */
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .animate-slideIn {
+            animation: slideIn 1.5s ease-out;
+        }
+
+        /* Hero Page 样式 */
+        .hero {
+            background-image: url('ancient-building-river.png'); /* 替换为实际的有古老建筑河流风景的图片 */
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-overlay {
+            background-color: rgba(255, 255, 255, 0.7); /* 半透明背景 */
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #000000;
+        }
+
+        /* 导航栏样式 */
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        nav li {
+            float: left;
+        }
+
+        nav li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        nav li a:hover {
+            background-color: #111;
+        }
+
+        /* 社交媒体链接样式 */
+        .social-links {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+
+        .social-links a {
+            margin-left: 10px;
+            color: white;
+            font-size: 20px;
+        }
+
+        /* 客户意见按钮样式 */
+        #feedback-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #2d1aff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* 放大缩小按钮样式 */
+        .zoom-buttons {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .zoom-buttons button {
+            background-color: #706670;
+            color: white;
+            padding: 7px 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body class="bg-custom-blue">
+
+    <!-- Hero Page -->
+    <div class="hero">
+        <div class="hero-overlay">
+            <h1 class="text-4xl font-bold">探索世界，享受旅程</h1>
+            <p class="text-xl mt-4">從巴黎到東京，從維羅納到香港，開啟您的夢幻之旅。</p>
+        </div>
+    </div>
+
+    <header class="bg-custom-black text-custom-white p-4 text-center">
+        <h1 class="text-3xl font-bold">旅遊網頁</h1>
+    </header>
+
+    <!-- 导航栏 -->
+    <nav class="bg-custom-pink p-4">
+        <ul class="flex space-x-4 justify-center">
+            <li><a href="#" class="text-custom-white hover:underline" onclick="loadContent('paris')">巴黎</a></li>
+            <li><a href="#" class="text-custom-white hover:underline" onclick="loadContent('verona')">維羅納</a></li>
+            <li><a href="#" class="text-custom-white hover:underline" onclick="loadContent('tokyo')">東京</a></li>
+            <li><a href="#" class="text-custom-white hover:underline" onclick="loadContent('hongkong')">香港</a></li>
+        </ul>
+    </nav>
+
+    <main id="content" class="p-6 bg-custom-white">
+        <h2 class="text-2xl font-bold mb-4 text-custom-black">選擇一個地點以查看詳細信息</h2>
+        <p class="text-gray-600">點擊上面的選項以開始探索。</p>
+    </main>
+
+    <!-- 动画元素 -->
+    <div id="animation" class="fixed top-0 left-0 w-full h-full flex flex-col items-center justify-center space-y-4 animate-slideIn">
+        <img src="suitcase.png" alt="旅行喼" class="w-20 h-20">
+        <img src="gift.png" alt="手信" class="w-20 h-20">
+        <img src="cat.png" alt="貓貓" class="w-20 h-20">
+        <img src="dog.png" alt="狗狗" class="w-20 h-20">
+    </div>
+
+    <!-- 社交媒体链接 -->
+    <div class="social-links">
+        <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+        <a href="https://mail.google.com" target="_blank"><i class="fab fa-google"></i> Gmail</a>
+    </div>
+
+    <!-- 客户意见按钮 -->
+    <button id="feedback-button" onclick="openFeedbackForm()">客戶意見</button>
+
+    <!-- 放大缩小按钮 -->
+    <div class="zoom-buttons">
+        <button onclick="zoomIn()">放大</button>
+        <button onclick="zoomOut()">縮小</button>
+    </div>
+
+    <footer class="bg-custom-black text-custom-white text-center p-4">
+        <p>&copy; 2025 旅遊網站</p>
+    </footer>
+
+    <script>
+        const destinations = {
+            paris: {
+                description: "巴黎是法國的首都，以其浪漫的氛圍和豐富的文化而聞名。必訪的景點包括艾菲爾鐵塔和羅浮宮。巴黎不僅是藝術和時尚的中心，還擁有豐富的歷史遺產。無論是漫步在塞納河畔，還是品嚐法式美食，巴黎都能帶給您難忘的體驗。巴黎的每個角落都充滿了故事，從蒙馬特區的藝術家到香榭麗舍大道的奢華商店，您可以在這裡找到屬於自己的浪漫時刻。此外，巴黎的博物館和畫廊也是藝術愛好者的天堂，羅浮宮的《蒙娜麗莎》和奧賽博物館的印象派作品都值得一看。",
+                attractions: [
+                    "艾菲爾鐵塔",
+                    "羅浮宮",
+                    "巴黎聖母院",
+                    "香榭麗舍大道",
+                    "蒙馬特區"
+                ],
+                image: "paris.jpg"
+            },
+            verona: {
+                description: "維羅納是一個充滿歷史和文化的國家，以其美食、藝術和建築而聞名。必訪的景點包括羅馬的競技場、茱麗葉之家。意大利的美食如披薩、意大利麵和冰淇淋也深受世界各地人們的喜愛。此外，意大利的藝術和建築也是世界著名的，如米開朗基羅的大衛像和梵蒂岡的聖彼得大教堂。",
+                attractions: [
+                    "羅馬競技場",
+                    "茱麗葉之家",
+                    "香草廣場",
+                    "老城博物館"
+                ],
+                image: "verona.jpg"
+            },
+            tokyo: {
+                description: "東京是日本的首都，以其現代化的建築和繁華的都市生活而聞名。必訪的景點包括東京塔、淺草寺和新宿御苑。東京也是一個購物和美食的天堂，您可以在這裡找到各種各樣的商品和美食。此外，東京的夜生活也非常豐富，您可以在這裡體驗到不同的文化和娛樂。",
+                attractions: [
+                    "東京塔",
+                    "淺草寺",
+                    "新宿御苑",
+                    "銀座"
+                ],
+                image: "tokyo.jpg"
+            },
+            hongkong: {
+                description: "香港是一個充滿活力的城市，以其美食和購物而聞名。維多利亞港的夜景令人難忘。香港融合了中西文化，擁有豐富的歷史和現代化的建築。您可以在太平山頂欣賞全景，或在旺角體驗地道的香港生活。香港的迪士尼樂園和海洋公園也是家庭遊客的熱門選擇。中環是香港的金融中心，擁有眾多的摩天大樓和高端商店；而旺角則是購物和美食的天堂，您可以品嚐到地道的港式點心和街頭小吃。此外，香港的夜景也是世界聞名，維多利亞港的燈光秀和太平山頂的夜景都值得一看。",
+                attractions: [
+                    "維多利亞港",
+                    "香港迪士尼樂園",
+                    "旺角",
+                    "香港海洋公園"
+                ],
+                image: "香港海洋公園.jpg"
+            }
+        };
+
+        function loadContent(destination) {
+            const contentDiv = document.getElementById('content');
+            // 这里可以添加加载内容的逻辑
+        }
+
+        // 放大功能
+        function zoomIn() {
+            document.body.style.zoom = (parseFloat(document.body.style.zoom) || 1) + 0.1;
+        }
+
+        // 缩小功能
+        function zoomOut() {
+            document.body.style.zoom = (parseFloat(document.body.style.zoom) || 1) - 0.1;
+        }
+
+        // 客户意见表单
+        function openFeedbackForm() {
+            alert('請留下您的寶貴意見！');
+            // 这里可以添加更复杂的表单逻辑，比如弹出一个模态框等
+        }
+    </script>
+</body>
+
+</html>
