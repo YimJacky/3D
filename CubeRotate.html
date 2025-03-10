@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Rotating Cube</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    :root {
+        --primary: #ff6b6b;
+        --secondary: #4ecdc4;
+    }
+
+    body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #010101;
+        font-family: 'Franklin Gothic Medium', Arial, sans-serif;
+        overflow: hidden;
+    }
+
+    .animation-container {
+        width: 400px;
+        height: 400px;
+        perspective: 1100px;
+        perspective-origin: 55% 45% ;
+         /* Essential for 3D view */
+    }
+
+    .cube {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        /* 告訴瀏覽器：這是真正的 3D 物體！ */
+        transform-style: preserve-3d;
+        animation: cubeRotate 60s infinite linear;
+    }
+
+    .cube-face {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: rgba(255, 255, 255, 0.15);
+        border: 2px solid var(--primary);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
+        color: white;
+        backface-visibility: visible;
+        transform-style: preserve-3d;
+        /*backdrop-filter: blur(5px);*/
+    }
+
+    /* Corrected face positions */
+    .front  { transform: translateZ(100px); }
+    .back   { transform: translateZ(-100px) rotateY(180deg); }
+    .right  { transform: rotateY(90deg) translateZ(100px); }
+    .left   { transform: rotateY(-90deg) translateZ(100px); }
+    .top    { transform: rotateX(90deg) translateZ(100px); }
+    .bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+    @keyframes cubeRotate {
+        0% { transform: rotateX(0) rotateY(0); }
+        100% { transform: rotateX(360deg) rotateY(720deg); }
+    }
+    </style>
+</head>
+<body>
+    <div class="animation-container">
+        <div class="cube">
+            <div class="cube-face front">FRONT</div>
+            <div class="cube-face back">BACK</div>
+            <div class="cube-face right">RIGHT</div>
+            <div class="cube-face left">LEFT</div>
+            <div class="cube-face top">TOP</div>
+            <div class="cube-face bottom">BOTTOM</div>
+        </div>
+    </div>
+</body>
+</html>
